@@ -1,6 +1,5 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-import { BaseSchema } from 'src/baseSchema';
 import { PostComment } from 'src/modules/post/schemas/post-comment.schema';
 import { PostLike } from 'src/modules/post/schemas/post-like.schema';
 import { Wall } from 'src/modules/wall/schemas/wall.schema';
@@ -10,7 +9,11 @@ export type UserDocument = HydratedDocument<User>;
 @Schema({
   timestamps: true,
 })
-export class User extends BaseSchema {
+export class User {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+
   @Prop({ required: true, unique: true })
   username: string;
 

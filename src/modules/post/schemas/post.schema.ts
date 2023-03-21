@@ -1,6 +1,5 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-import { BaseSchema } from 'src/baseSchema';
 import { User } from 'src/modules/user/schemas/user.schema';
 import { Wall } from 'src/modules/wall/schemas/wall.schema';
 import { PostContentProps } from '../dto/create-post.dto';
@@ -12,7 +11,11 @@ export type PostDocument = HydratedDocument<Post>;
 @Schema({
   timestamps: true,
 })
-export class Post extends BaseSchema {
+export class Post {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+
   @Prop({ required: true })
   content: PostContentProps[];
 
